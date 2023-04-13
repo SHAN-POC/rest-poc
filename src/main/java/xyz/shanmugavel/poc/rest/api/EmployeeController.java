@@ -60,9 +60,10 @@ public class EmployeeController {
   }
 
   @DeleteMapping("/employee/{id}")
-  public void delete(@PathVariable Long id) {
+  public ResponseEntity delete(@PathVariable Long id) {
     LOGGER.info("Delete employee by id {}", id);
     employeeService.delete(id);
+    return ResponseEntity.noContent().build();
   }
 
 }
