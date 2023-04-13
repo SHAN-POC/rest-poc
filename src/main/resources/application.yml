@@ -4,3 +4,11 @@ spring:
 
 server:
   port: 9000
+
+logging:
+  level:
+    root: INFO
+    xyz.shanmugavel: DEBUG
+    com: INFO
+    org: INFO
+
