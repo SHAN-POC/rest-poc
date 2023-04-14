@@ -1,4 +1,4 @@
-# Payroll Application
+# Sample REST POC Application
 
 ### Getting Started
 
