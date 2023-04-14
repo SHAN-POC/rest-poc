@@ -5,8 +5,8 @@
 A sample application that exposes REST API's.
 
 ### How to run the application in Docker?
- docker build  -t shaninfy/rest-poc .
- docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" shaninfy/rest-poc 
+ docker build  -t rest-poc:latest .
+ docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" rest-poc:latest 
 
 ### FAQ
 
