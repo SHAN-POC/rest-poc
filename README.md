@@ -13,11 +13,10 @@ docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" rest-poc:la
   ##### Steps to auto-generate deployment.yaml file 
   kubectl create deployment rest-poc '--image=shaninfy/rest-poc' '--dry-run=client' '-o=yaml' > deployment.yaml  
   echo --- >> deployment.yaml  
-  kubectl create service clusterip rest-poc '--tcp=8081:9000' '--dry-run=client' '-o=yaml' >> deployment.yaml  
+  kubectl create service loadbalancer rest-poc '--tcp=9000:9000' '--dry-run=client' '-o=yaml'  
 
   ##### Steps to start app  
   kubectl apply -f deployment.yaml
-  kubectl port-forward svc/rest-poc 8081:8081  
 
 ### FAQ
 
