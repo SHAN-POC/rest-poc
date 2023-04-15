@@ -36,7 +36,7 @@ public class EmployeeController {
   }
 
   @PostMapping("/employee")
-  public ResponseEntity newEmployee(@RequestBody Employee employee) {
+  public ResponseEntity<EntityModel<Employee> > newEmployee(@RequestBody Employee employee) {
     LOGGER.debug("Create new employee.");
     EntityModel<Employee> employeeModel = modelAssembler.toModel(employeeService.createNew(employee));
     return ResponseEntity.created(employeeModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
@@ -60,7 +60,7 @@ public class EmployeeController {
   }
 
   @DeleteMapping("/employee/{id}")
-  public ResponseEntity delete(@PathVariable Long id) {
+  public ResponseEntity<EntityModel<Employee> > delete(@PathVariable Long id) {
     LOGGER.info("Delete employee by id {}", id);
     employeeService.delete(id);
     return ResponseEntity.noContent().build();
