@@ -9,7 +9,7 @@ A sample application that exposes REST API's.
     docker build  -t rest-poc:latest .
     docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" rest-poc:latest
 
-### Ho to push the app to docker contaier registry?
+### Ho to push the app to docker container registry?
 
     docker push shaninfy/rest-poc:latest
 
