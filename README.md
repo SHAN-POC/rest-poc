@@ -1,6 +1,6 @@
 # Sample REST POC Application
 
-### Getting Started
+## Getting Started
 
 A sample application that exposes REST API's.
 
@@ -9,14 +9,11 @@ A sample application that exposes REST API's.
 docker build  -t rest-poc:latest .
 docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" rest-poc:latest
 
-### How to deploy app through Kubernetes (from PowerShell)?  
-  ##### Steps to auto-generate deployment.yaml file 
-  kubectl create deployment rest-poc '--image=shaninfy/rest-poc' '--dry-run=client' '-o=yaml' > deployment.yaml  
-  echo --- >> deployment.yaml  
-  kubectl create service loadbalancer rest-poc '--tcp=9000:9000' '--dry-run=client' '-o=yaml'  
+## How to deploy app through Kubernetes (from PowerShell)?  
 
-  ##### Steps to start app  
-  kubectl apply -f deployment.yaml
+### Steps to start app (app sould have been pushed to container registry) ?
+
+ kubectl apply -f deployment.yaml
 
 ### FAQ
 
@@ -26,11 +23,14 @@ docker run --name rest-poc-app -p 8081:9000 -e "JAVA_OPTS=-DXmx128m" rest-poc:la
 **Login to container when container is up?**  
  docker exec -it rest-poc-app sh
 
-**How to delete service in kuberntes?**  
+**How to delete service in kubernetes?**  
  kubectl delete services rest-poc  
 
 **How to delete deployments in kuberntes?**  
  kubectl delete deployment rest-poc  
 
+**How to delete all the items created in single shot?**
+ kubectl delete ns shan-rest-poc-ns
+
 **View all items (pods, services, deploymets replica-sets etc) in current namespace?**  
-  kubectl get all
+  kubectl get all --namespace=shan-rest-poc-ns

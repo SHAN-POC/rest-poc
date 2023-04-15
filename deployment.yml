@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: shan-rest-poc-ns
+  labels:
+    app: rest-poc
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: shan-rest-poc-ns
+  name: rest-poc
+  labels:
+    app: rest-poc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-poc
+  template:
+    metadata:
+      labels:
+        app: rest-poc
+    spec:
+      containers:
+      - name: rest-poc
+        image: shaninfy/rest-poc
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+---        
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-poc
+  namespace: shan-rest-poc-ns
+  labels:
+    app: rest-poc
+spec:
+  selector:
+    app: rest-poc
+  ports:
+  - port: 8081
+    targetPort: 9000
+    protocol: TCP
+  type: LoadBalancer
